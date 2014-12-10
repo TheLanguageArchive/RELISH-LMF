@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns:lmf="http://www.lexicalmarkupframework.org/" xmlns:dcr="http://www.isocat.org/ns/dcr" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+    
+    <!-- Depends on: the LMF core model -->
+
+    <!-- Extends: Lexicon -->
+    
+    <define name="relish.lmf.Lexicon.content" combine="interleave">
+        <interleave>
+            <zeroOrMore>
+                <ref name="relish.lmf.SubcategorizationFrame"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.SubcategorizationFrameSet"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <!-- Extends: Lexical Entry -->
+    
+    <define name="relish.lmf.LexicalEntry.content" combine="interleave">
+        <interleave>
+            <zeroOrMore>
+                <ref name="relish.lmf.SyntacticBehaviour"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Syntactic Behaviour -->
+    
+    <define name="relish.lmf.SyntacticBehaviour">
+        <element name="lmf:SyntacticBehaviour">
+            <ref name="relish.lmf.SyntacticBehaviour.attributes"/>
+            <ref name="relish.lmf.SyntacticBehaviour.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SyntacticBehaviour.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="senses">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="subcategorizationFrames">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="subcategorizationFrameSets">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.SyntacticBehaviour.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+
+    <!-- Adds: Subcategorization Frame -->
+
+    <define name="relish.lmf.SubcategorizationFrame">
+        <element name="lmf:SubcategorizationFrame">
+            <ref name="relish.lmf.SubcategorizationFrame.attributes"/>
+            <ref name="relish.lmf.SubcategorizationFrame.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SubcategorizationFrame.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="inherit">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.SubcategorizationFrame.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <optional>
+                <ref name="relish.lmf.LexemeProperty"/>
+            </optional>
+            <zeroOrMore>
+                <ref name="relish.lmf.SyntacticArgument"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Lexeme Property -->
+    
+    <define name="relish.lmf.LexemeProperty">
+        <element name="lmf:LexemeProperty">
+            <ref name="relish.lmf.LexemeProperty.attributes"/>
+            <ref name="relish.lmf.LexemeProperty.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.LexemeProperty.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.LexemeProperty.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Syntactic Argument -->
+    
+    <define name="relish.lmf.SyntacticArgument">
+        <element name="lmf:SyntacticArgument">
+            <ref name="relish.lmf.SyntacticArgument.attributes"/>
+            <ref name="relish.lmf.SyntacticArgument.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SyntacticArgument.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="target">
+                <data type="IDREF"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.SyntacticArgument.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Subcategorization Frame Set -->
+    
+    <define name="relish.lmf.SubcategorizationFrameSet">
+        <element name="lmf:SubcategorizationFrameSet">
+            <ref name="relish.lmf.SubcategorizationFrameSet.attributes"/>
+            <ref name="relish.lmf.SubcategorizationFrameSet.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SubcategorizationFrameSet.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="subcategorizationFrames">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="inherit">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.SubcategorizationFrameSet.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.SynArgMap"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: SynArgMap -->
+    
+    <define name="relish.lmf.SynArgMap">
+        <element name="lmf:SynArgMap">
+            <ref name="relish.lmf.SynArgMap.attributes"/>
+            <ref name="relish.lmf.SynArgMap.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SynArgMap.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="arg1">
+            <data type="IDREF"/>
+        </attribute>
+        <attribute name="arg2">
+            <data type="IDREF"/>
+        </attribute>
+    </define>
+    
+    <define name="relish.lmf.SynArgMap.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+        
+</grammar>

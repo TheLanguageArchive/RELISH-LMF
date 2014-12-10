@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="H.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="H.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<LexicalResource xmlns="http://www.lexicalmarkupframework.org/" lmfVersion="ISO 24613:2008">
+    <GlobalInformation>
+        <feat att="languageCoding" val="ISO 639-3"/>
+    </GlobalInformation>
+    <Lexicon>
+        <LexicalEntry>
+            <feat att="partOfSpeech" val="noun"/>
+            <Lemma type="Form">
+                <feat att="writtenForm" val="oak tree"/>
+            </Lemma>
+            <Sense xml:id="oak_tree0" synset="SS12100067"/>
+        </LexicalEntry>
+        <LexicalEntry>
+            <feat att="partOfSpeech" val="noun"/>
+            <Lemma type="Form">
+                <feat att="writtenForm" val="oak"/>
+            </Lemma>
+            <Sense xml:id="oak0" synset="SS12100067"/>
+            <Sense xml:id="oak2" synset="SS12100739"/>
+        </LexicalEntry>
+        <Synset xml:id="SS12100067">
+            <Definition>
+                <feat att="text" val="a deciduous tree of the genus Quercus"/>
+                <Statement>
+                    <feat att="text" val="has acorns and lobed leaves"/>
+                </Statement>
+                <Statement>
+                    <feat att="text" val="great oaks grow from little acorns"/>
+                </Statement>
+            </Definition>
+            <SynsetRelation targets="SS12100739">
+                <feat att="label" val="substanceHolonym"/>
+            </SynsetRelation>
+        </Synset>
+        <Synset xml:id="SS12100739">
+            <Definition>
+                <feat att="text" val="the hard durable wood of any oak"/>
+                <Statement>
+                    <feat att="text" val="used especially for furniture and flooring"/>
+                </Statement>
+            </Definition>
+        </Synset>
+    </Lexicon>
+</LexicalResource>

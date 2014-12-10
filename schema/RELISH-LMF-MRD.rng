@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns:lmf="http://www.lexicalmarkupframework.org/" xmlns:dcr="http://www.isocat.org/ns/dcr" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+    
+    <sch:ns uri="http://www.isocat.org/ns/dcif" prefix="lmf"/>
+    
+    <!-- Depends on: the LMF morphology extension -->
+    
+    <!-- Extends: Sense -->
+
+    <define name="relish.lmf.Sense.content" combine="interleave">
+        <interleave>
+            <zeroOrMore>
+                <ref name="relish.lmf.Equivalent"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.Context"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.SubjectField"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <!-- Adds: Equivalent -->
+
+    <define name="relish.lmf.Equivalent">
+        <element name="lmf:Equivalent">
+            <ref name="relish.lmf.Equivalent.attributes"/>
+            <ref name="relish.lmf.Equivalent.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.Equivalent.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+
+    <define name="relish.lmf.Equivalent.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.TextRepresentation"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Context -->
+    
+    <define name="relish.lmf.Context">
+        <element name="lmf:Context">
+            <ref name="relish.lmf.Context.attributes"/>
+            <ref name="relish.lmf.Context.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.Context.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.Context.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.TextRepresentation"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Subject Field -->
+    
+    <define name="relish.lmf.SubjectField">
+        <element name="lmf:SubjectField">
+            <ref name="relish.lmf.SubjectField.attributes"/>
+            <ref name="relish.lmf.SubjectField.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SubjectField.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.SubjectField.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.SubjectField"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+</grammar>

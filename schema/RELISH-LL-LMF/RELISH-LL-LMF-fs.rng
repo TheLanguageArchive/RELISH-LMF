@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar 
+    xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:dcr="http://www.isocat.org/ns/dcr">
+    
+    <define name="relish.lmf.fs">
+        <zeroOrMore>
+            <ref name="f"/>
+        </zeroOrMore>
+    </define>
+    
+    <define name="fs">
+        <element name="tei:fs">
+            <optional>
+                <attribute name="type"/>
+            </optional>
+            <ref name="datcat"/>
+            <ref name="ff"/>
+        </element>
+    </define>
+    
+    <!-- ISO/TEI feature structure: features -->
+    <define name="ff">
+        <zeroOrMore>
+            <ref name="f"/>
+        </zeroOrMore>
+    </define>
+    
+    <!-- ISO/TEI feature structure: feature -->
+    
+    <define name="f">
+        <element name="tei:f">
+            <attribute name="name"/>
+            <ref name="datcat"/>
+            <choice>
+                <ref name="fval"/>
+                <ref name="fs"/>
+            </choice>
+        </element>
+    </define>
+    
+    <!-- ISO/TEI feature structure: feature value(s) -->
+    
+    <define name="fval">
+        <choice>
+            <element name="tei:string">
+                <ref name="datcats"/>
+                <ref name="lang"/>
+                <text/>
+            </element>
+            <element name="tei:vColl">
+                <oneOrMore>
+                    <element name="tei:string">
+                        <ref name="datcats"/>
+                        <ref name="lang"/>
+                        <text/>
+                    </element>
+                </oneOrMore>
+            </element>
+        </choice>
+    </define>
+    
+    <!-- XML: id -->
+    
+    <define name="id">
+        <optional>
+            <attribute name="xml:id"/>
+        </optional>
+    </define>
+    
+    <!-- XML: lang -->
+    
+    <define name="lang">
+        <optional>
+            <attribute name="xml:lang">
+                <data type="language"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <!-- ISOcat: optional @dcr:datcat -->
+    
+    <define name="datcat">
+        <optional>
+            <attribute name="dcr:datcat">
+                <data type="anyURI"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <!-- ISOcat: optional @dcr:datcat and/or @dcr:valueDatcat -->
+    
+    <define name="datcats">
+        <optional>
+            <attribute name="dcr:datcat">
+                <data type="anyURI"/>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="dcr:valueDatcat">
+                <data type="anyURI"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    
+</grammar>

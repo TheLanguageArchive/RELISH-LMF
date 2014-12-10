@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar 
+    xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+    xmlns:lmf="http://www.lexicalmarkupframework.org/">
+    
+    <include href="tei/tei.rng"/>
+    <include href="tei/iso-fs.rng" ns="http://www.tei-c.org/ns/1.0"/>
+
+    <!-- allow the declaration of reusable feature structures (components) -->
+    <define name="relish.lmf.LexicalResource.content" combine="interleave">
+        <optional>
+            <ref name="fsdDecl"/>
+        </optional>
+    </define>
+    
+    <!-- FSDs don't allow @dcr:* yet, so add them -->
+    <define name="fDecl.localattributes" combine="interleave">
+        <ref name="att.datcat.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.fs">
+        <zeroOrMore>
+            <ref name="f"/>
+        </zeroOrMore>
+    </define>
+    
+</grammar>

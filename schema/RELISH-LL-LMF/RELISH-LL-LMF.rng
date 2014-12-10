@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar 
+    xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+    xmlns:lmf="http://www.lexicalmarkupframework.org/"
+    xmlns:dcr="http://www.isocat.org/ns/dcr"
+    xmlns:relish="http://www.mpi.nl/relish">
+    
+    <!-- always -->
+    <include href="../../schema/RELISH-LMF-common.rng"/>
+    <include href="../../schema/RELISH-LMF-core.rng"/>
+    
+    <!-- choose fs -->
+    <include href="RELISH-LL-LMF-fs.rng"/>
+    
+    <!-- LMF extensions -->
+    <include href="../../schema/RELISH-LMF-morphology.rng">
+        <!-- override all LMF classes not supported by RELISH-LL-LMF -->
+        <define name="relish.lmf.WordForm">
+            <empty/>
+        </define>
+        <define name="relish.lmf.Stem">
+            <empty/>
+        </define>
+        <define name="relish.lmf.ListOfComponents">
+            <empty/>
+        </define>
+        <define name="relish.lmf.Component">
+            <empty/>
+        </define>
+    </include>
+    <include href="../../schema/RELISH-LMF-syntax.rng">
+        <!-- override all LMF classes not supported by RELISH-LL-LMF -->
+        <define name="relish.lmf.SyntacticBehaviour">
+            <empty/>
+        </define>
+        <define name="relish.lmf.SubcategorizationFrame">
+            <empty/>
+        </define>
+        <define name="relish.lmf.LexemeProperty">
+            <empty/>
+        </define>
+        <define name="relish.lmf.SyntacticArgument">
+            <empty/>
+        </define>
+        <define name="relish.lmf.SubcategorizationFrameSet">
+            <empty/>
+        </define>
+        <define name="relish.lmf.SynArgMap">
+            <empty/>
+        </define>
+    </include>
+    <include href="../../schema/RELISH-LMF-semantics.rng">
+        <!-- override all LMF classes not supported by RELISH-LL-LMF -->
+        <define name="relish.lmf.PredicativeRepresentation">
+            <empty/>
+        </define>
+        <define name="relish.lmf.SemanticPredicate">
+            <empty/>
+        </define>
+        <define name="relish.lmf.SemanticArgument">
+            <empty/>
+        </define>
+        <define name="relish.lmf.ArgumentRelation">
+            <empty/>
+        </define>
+        <define name="relish.lmf.SynSemCorrespondence">
+            <empty/>
+        </define>
+        <define name="relish.lmf.SynSemArgMap">
+            <empty/>
+        </define>
+        <define name="relish.lmf.PredicateRelation">
+            <empty/>
+        </define>
+        <define name="relish.lmf.SenseExample">
+            <empty/>
+        </define>
+        <define name="relish.lmf.Synset">
+            <empty/>
+        </define>
+        <define name="relish.lmf.SynsetRelation">
+            <empty/>
+        </define>
+        <define name="relish.lmf.MonolingualExternalRef">
+            <empty/>
+        </define>
+    </include>
+    <include href="../../schema/RELISH-LMF-MRD.rng">
+        <!-- override all LMF classes not supported by RELISH-LL-LMF -->
+        <define name="relish.lmf.Equivalent">
+            <empty/>
+        </define>
+        <define name="relish.lmf.SubjectField">
+            <empty/>
+        </define>
+    </include>
+    
+    <!-- additional Schematron rules to check for mandatory features -->
+    <sch:pattern name="The Sense Relation feature structure should contain /type/">
+        <sch:rule context="lmf:SenseRelation">
+            <sch:assert test="exists(child::*[(@att,@name) = ('type')])">The Sense Relation feature structure should contain /type/!</sch:assert>
+        </sch:rule>
+    </sch:pattern>
+    
+    <sch:pattern name="The Related Form feature structure should contain /type/">
+        <sch:rule context="lmf:RelatedForm">
+            <sch:assert test="exists(child::*[(@att,@name) = ('type')])">The Related Form feature structure should contain /type/!</sch:assert>
+        </sch:rule>
+    </sch:pattern>
+    
+</grammar>

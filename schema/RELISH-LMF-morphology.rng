@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns:lmf="http://www.lexicalmarkupframework.org/" xmlns:dcr="http://www.isocat.org/ns/dcr" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+    
+    <sch:ns uri="http://www.isocat.org/ns/dcif" prefix="lmf"/>
+    
+    <!-- Depends on: the LMF core model -->
+    
+    <!-- Extends: Lexical Entry -->
+
+    <define name="relish.lmf.LexicalEntry.content" combine="interleave">
+        <interleave>
+            <ref name="relish.lmf.Lemma"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.WordForm"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.Stem"/>
+            </zeroOrMore>
+            <optional>
+                <ref name="relish.lmf.ListOfComponents"/>
+            </optional>
+            <zeroOrMore>
+                <ref name="relish.lmf.RelatedForm"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <!-- Adds: Lemma -->
+
+    <define name="relish.lmf.Lemma">
+        <element name="lmf:Lemma">
+            <ref name="relish.lmf.Lemma.attributes"/>
+            <ref name="relish.lmf.Lemma.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.Lemma.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="type">
+            <value>Form</value>
+        </attribute>
+    </define>
+
+    <define name="relish.lmf.Lemma.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.FormRepresentation"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <!-- Adds: Word Form -->
+
+    <define name="relish.lmf.WordForm">
+        <element name="lmf:WordForm">
+            <ref name="relish.lmf.WordForm.attributes"/>
+            <ref name="relish.lmf.WordForm.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.WordForm.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="type">
+            <value>Form</value>
+        </attribute>
+    </define>
+
+    <define name="relish.lmf.WordForm.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.FormRepresentation"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <!-- Adds: Stem -->
+
+    <define name="relish.lmf.Stem">
+        <element name="lmf:Stem">
+            <ref name="relish.lmf.Stem.attributes"/>
+            <ref name="relish.lmf.Stem.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.Stem.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="type">
+            <value>Form</value>
+        </attribute>
+    </define>
+
+    <define name="relish.lmf.Stem.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.FormRepresentation"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <!-- Adds: Related Form -->
+    
+    <define name="relish.lmf.RelatedForm">
+        <element name="lmf:RelatedForm">
+            <ref name="relish.lmf.RelatedForm.attributes"/>
+            <ref name="relish.lmf.RelatedForm.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.RelatedForm.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="targets">
+            <data type="IDREFS"/>
+        </attribute>
+    </define>
+    
+    <define name="relish.lmf.RelatedForm.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: List of Components -->
+
+    <define name="relish.lmf.ListOfComponents">
+        <element name="lmf:ListOfComponents">
+            <ref name="relish.lmf.ListOfComponents.attributes"/>
+            <ref name="relish.lmf.ListOfComponents.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.ListOfComponents.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+
+    <define name="relish.lmf.ListOfComponents.content">
+        <sch:pattern>
+            <sch:title>List of Components should contain at least 2 Components</sch:title>
+            <sch:rule context="lmf:ListOfComponents">
+                <sch:assert test="count(lmf:Component) ge 2">A List of Components should contain at least 2 Components!</sch:assert>
+            </sch:rule>
+        </sch:pattern>
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <oneOrMore>
+                <ref name="relish.lmf.Component"/>
+            </oneOrMore>
+        </interleave>
+    </define>
+
+    <!-- Adds: Component -->
+
+    <define name="relish.lmf.Component">
+        <element name="lmf:Component">
+            <ref name="relish.lmf.Component.attributes"/>
+            <ref name="relish.lmf.Component.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.Component.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="entry">
+            <data type="IDREF"/>
+        </attribute>
+    </define>
+
+    <define name="relish.lmf.Component.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+
+</grammar>

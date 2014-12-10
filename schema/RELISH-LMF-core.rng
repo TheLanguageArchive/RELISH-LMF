@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns:lmf="http://www.lexicalmarkupframework.org/" xmlns:dcr="http://www.isocat.org/ns/dcr" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+    
+    <sch:ns uri="http://www.lexicalmarkupframework.org/" prefix="lmf"/>
+    <sch:ns uri="http://www.isocat.org/ns/dcr" prefix="dcr"/>
+    <sch:ns uri="http://www.tei-c.org/ns/1.0" prefix="tei"/>
+    
+    <start>
+        <ref name="relish.lmf.LexicalResource"/>
+    </start>
+    
+    <!-- Depends on: RELISH LMF common and a FS -->
+    
+    <!-- Lexical Resource -->
+
+    <define name="relish.lmf.LexicalResource">
+        <element name="lmf:LexicalResource">
+            <ref name="relish.lmf.root.attributes"/>
+            <ref name="relish.lmf.LexicalResource.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.LexicalResource.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <ref name="relish.lmf.GlobalInformation"/>
+            <oneOrMore>
+                <ref name="relish.lmf.Lexicon"/>
+            </oneOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Global Information -->
+
+    <define name="relish.lmf.GlobalInformation">
+        <element name="lmf:GlobalInformation">
+            <ref name="relish.lmf.GlobalInformation.attributes"/>
+            <ref name="relish.lmf.GlobalInformation.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.GlobalInformation.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+
+    <define name="relish.lmf.GlobalInformation.content">
+        <sch:pattern>
+            <sch:title>The Global Information feature structure should contain /language coding/ (http://www.isocat.org/datcat/DC-2008)</sch:title>
+            <sch:rule context="lmf:GlobalInformation">
+                <sch:assert test="exists(child::*[(@att,@name) = ('language coding','languageCoding') or @dcr:datcat='http://www.isocat.org/datcat/DC-2008'])">The Global Information feature structure should contain /language coding/ (http://www.isocat.org/datcat/DC-2008)!</sch:assert>
+            </sch:rule>
+        </sch:pattern>
+        <interleave>
+            <ref name="relish.lmf.fs"/>            
+        </interleave>
+    </define>
+    
+    <!-- Lexicon -->
+
+    <define name="relish.lmf.Lexicon">
+        <element name="lmf:Lexicon">
+            <ref name="relish.lmf.Lexicon.attributes"/>
+            <ref name="relish.lmf.Lexicon.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.Lexicon.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+        
+    <define name="relish.lmf.Lexicon.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <oneOrMore>
+                <ref name="relish.lmf.LexicalEntry"/>
+            </oneOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Lexical Entry -->
+
+    <define name="relish.lmf.LexicalEntry">
+        <element name="lmf:LexicalEntry">
+            <ref name="relish.lmf.LexicalEntry.attributes"/>
+            <ref name="relish.lmf.LexicalEntry.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.LexicalEntry.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.LexicalEntry.content">
+        <sch:pattern>
+            <sch:title>A Lexical Entry should contain at least one Form</sch:title>
+            <sch:rule context="lmf:LexicalEntry">
+                <sch:assert test="count((lmf:*[@type='Form'],child::element()[@lmf:type='Form'])) ge 1">A Lexical Entry should contain at least one instance of a subclass of Form!</sch:assert>
+            </sch:rule>
+        </sch:pattern>
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.Sense"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Sense -->
+
+    <define name="relish.lmf.Sense">
+        <element name="lmf:Sense">
+            <ref name="relish.lmf.Sense.attributes"/>
+            <ref name="relish.lmf.Sense.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.Sense.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.Sense.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.Definition"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.Sense"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Definition -->
+
+    <define name="relish.lmf.Definition">
+        <element name="lmf:Definition">
+            <ref name="relish.lmf.Definition.attributes"/>
+            <ref name="relish.lmf.Definition.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.Definition.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+
+    <define name="relish.lmf.Definition.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.Statement"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.TextRepresentation"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <!-- Statement -->
+    
+    <define name="relish.lmf.Statement">
+        <element name="lmf:Statement">
+            <ref name="relish.lmf.Statement.attributes"/>
+            <ref name="relish.lmf.Statement.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.Statement.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.Statement.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.TextRepresentation"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Text Representation -->
+
+    <define name="relish.lmf.TextRepresentation">
+        <element name="lmf:TextRepresentation">
+            <ref name="relish.lmf.TextRepresentation.attributes"/>
+            <ref name="relish.lmf.TextRepresentation.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.TextRepresentation.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="type">
+            <value>Representation</value>
+        </attribute>
+    </define>
+
+    <define name="relish.lmf.TextRepresentation.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>            
+        </interleave>
+    </define>
+    
+    <!-- Form Representation -->
+
+    <define name="relish.lmf.FormRepresentation">
+        <element name="lmf:FormRepresentation">
+            <ref name="relish.lmf.FormRepresentation.attributes"/>
+            <ref name="relish.lmf.FormRepresentation.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.FormRepresentation.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="type">
+            <value>Representation</value>
+        </attribute>
+    </define>
+    
+    <define name="relish.lmf.FormRepresentation.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+
+</grammar>

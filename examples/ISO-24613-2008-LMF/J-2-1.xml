@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="J.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="J.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<LexicalResource xmlns="http://www.lexicalmarkupframework.org/" lmfVersion="ISO 24613:2008">
+    <GlobalInformation>
+        <feat att="languageCoding" val="ISO 639-3"/>
+    </GlobalInformation>
+    <Lexicon>
+        <LexicalEntry>
+            <Lemma type="Form"/>
+            <Sense xml:id="fra.riviere1"/>
+        </LexicalEntry>
+        <LexicalEntry>
+            <Lemma type="Form"/>
+            <Sense xml:id="fra.fleuve1"/>
+        </LexicalEntry>
+    </Lexicon>
+    <Lexicon>
+        <LexicalEntry>
+            <Lemma type="Form"/>
+            <Sense xml:id="eng.river1"/>
+        </LexicalEntry>
+    </Lexicon>
+    <SenseAxis xml:id="SA1" senses="fra.riviere1 eng.river1">
+        <SenseAxisRelation targets="SA2">
+            <feat att="label" val="more general"/>
+        </SenseAxisRelation>
+    </SenseAxis>
+    <SenseAxis xml:id="SA2" senses="fra.fleuve1"/>
+</LexicalResource>

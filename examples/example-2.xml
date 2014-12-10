@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="example-2.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="example-2.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<LexicalResource xmlns="http://www.lexicalmarkupframework.org/" xmlns:tei="http://www.tei-c.org/ns/1.0"  xmlns:dcr="http://www.isocat.org/ns/dcr" lmfVersion="ISO 24613:2008">
+    <GlobalInformation>
+        <tei:f name="languageCoding" fVal="ISO 639-3" dcr:datcat="http://www.isocat.org/datcat/DC-2008"/>
+    </GlobalInformation>
+    <Lexicon>
+        <tei:f name="language" fVal="eng" dcr:datcat="http://www.isocat.org/datcat/DC-1969"/>
+        <LexicalEntry>
+            <tei:f name="partOfSpeech" dcr:datcat="http://www.isocat.org/datcat/DC-1345" fVal="commonNoun" dcr:valueDatcat="http://www.isocat.org/datcat/DC-1256"/>
+            <Lemma type="Form">
+                <tei:f name="writtenForm" dcr:datcat="http://www.isocat.org/datcat/DC-1836" fVal="clergyman"/>
+            </Lemma>
+        </LexicalEntry>
+    </Lexicon>
+</LexicalResource>

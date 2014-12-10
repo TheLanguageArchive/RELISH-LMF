@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar 
+    xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+    xmlns:lmf="http://www.lexicalmarkupframework.org/"
+    xmlns:dcr="http://www.isocat.org/ns/dcr">
+
+    <define name="relish.lmf.fs">
+        <zeroOrMore>
+            <element name="lmf:feat">
+                <ref name="relish.lmf.common.attributes"/>
+                <attribute name="att">
+                    <text/>
+                </attribute>
+                <attribute name="val">
+                    <text/>
+                </attribute>
+            </element>
+        </zeroOrMore>
+    </define>
+    
+</grammar>

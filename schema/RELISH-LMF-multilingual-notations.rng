@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns:lmf="http://www.lexicalmarkupframework.org/" xmlns:dcr="http://www.isocat.org/ns/dcr" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+    
+    <sch:ns uri="http://www.isocat.org/ns/dcif" prefix="lmf"/>
+    
+    <!-- Depends on: the LMF MRD, Syntax and Semantics extensions -->
+    
+    <!-- Extends: Lexical Resource -->
+    
+    <define name="relish.lmf.LexicalResource.content" combine="interleave">
+        <interleave>
+            <zeroOrMore>
+                <ref name="relish.lmf.SenseAxis"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.TransferAxis"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.ContextAxis"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Sense Axis -->
+    
+    <define name="relish.lmf.SenseAxis">
+        <element name="lmf:SenseAxis">
+            <ref name="relish.lmf.SenseAxis.attributes"/>
+            <ref name="relish.lmf.SenseAxis.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SenseAxis.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="senses">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="synsets">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.SenseAxis.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.SenseAxisRelation"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.InterlingualExternalRef"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <!-- Adds: Interlingual External Ref -->
+    
+    <define name="relish.lmf.InterlingualExternalRef">
+        <element name="lmf:InterlingualExternalRef">
+            <ref name="relish.lmf.InterlingualExternalRef.attributes"/>
+            <ref name="relish.lmf.InterlingualExternalRef.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.InterlingualExternalRef.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.InterlingualExternalRef.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Sense Axis Relation -->
+    
+    <define name="relish.lmf.SenseAxisRelation">
+        <element name="lmf:SenseAxisRelation">
+            <ref name="relish.lmf.SenseAxisRelation.attributes"/>
+            <ref name="relish.lmf.SenseAxisRelation.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SenseAxisRelation.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="targets">
+            <data type="IDREFS"/>
+        </attribute>
+    </define>
+    
+    <define name="relish.lmf.SenseAxisRelation.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Transfer Axis -->
+    
+    <define name="relish.lmf.TransferAxis">
+        <element name="lmf:TransferAxis">
+            <ref name="relish.lmf.TransferAxis.attributes"/>
+            <ref name="relish.lmf.TransferAxis.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.TransferAxis.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="syntacticBehaviours">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.TransferAxis.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.TransferAxisRelation"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.SourceTest"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.TargetTest"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Transfer Axis Relation -->
+    
+    <define name="relish.lmf.TransferAxisRelation">
+        <element name="lmf:TransferAxisRelation">
+            <ref name="relish.lmf.TransferAxisRelation.attributes"/>
+            <ref name="relish.lmf.TransferAxisRelation.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.TransferAxisRelation.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="targets">
+            <data type="IDREFS"/>
+        </attribute>
+    </define>
+    
+    <define name="relish.lmf.TransferAxisRelation.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Source Test -->
+    
+    <define name="relish.lmf.SourceTest">
+        <element name="lmf:SourceTest">
+            <ref name="relish.lmf.SourceTest.attributes"/>
+            <ref name="relish.lmf.SourceTest.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SourceTest.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="syntacticBehaviours">
+            <data type="IDREFS"/>
+        </attribute>
+    </define>
+    
+    <define name="relish.lmf.SourceTest.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Target Test -->
+    
+    <define name="relish.lmf.TargetTest">
+        <element name="lmf:TargetTest">
+            <ref name="relish.lmf.TargetTest.attributes"/>
+            <ref name="relish.lmf.TargetTest.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.TargetTest.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="syntacticBehaviours">
+            <data type="IDREFS"/>
+        </attribute>
+    </define>
+    
+    <define name="relish.lmf.TargetTest.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+
+    <!-- Adds: Context Axis -->
+    
+    <define name="relish.lmf.ContextAxis">
+        <element name="lmf:ContextAxis">
+            <ref name="relish.lmf.ContextAxis.attributes"/>
+            <ref name="relish.lmf.ContextAxis.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.ContextAxis.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="examples">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.ContextAxis.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.ContextAxisRelation"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Context Axis Relation -->
+    
+    <define name="relish.lmf.ContextAxisRelation">
+        <element name="lmf:ContextAxisRelation">
+            <ref name="relish.lmf.ContextAxisRelation.attributes"/>
+            <ref name="relish.lmf.ContextAxisRelation.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.ContextAxisRelation.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="targets">
+            <data type="IDREFS"/>
+        </attribute>
+    </define>
+    
+    <define name="relish.lmf.ContextAxisRelation.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+</grammar>

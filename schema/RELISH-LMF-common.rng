@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar 
+    xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+    xmlns:lmf="http://www.lexicalmarkupframework.org/"
+    xmlns:dcr="http://www.isocat.org/ns/dcr">
+
+    <define name="relish.lmf.root.attributes">
+        <attribute name="lmfVersion">
+            <value>ISO 24613:2008</value>
+        </attribute>
+    </define>
+
+    <define name="relish.lmf.common.attributes.id">
+        <attribute name="xml:id">
+            <data type="ID"/>
+        </attribute>
+    </define>
+    
+    <define name="relish.lmf.common.attributes.lang">
+        <attribute name="xml:lang">
+            <data type="language"/>
+        </attribute>
+    </define>
+    
+    <define name="org.isocat.dcr.attributes">
+        <optional>
+            <attribute name="dcr:datcat">
+                <data type="anyURI"/>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="dcr:valueDatcat">
+                <data type="anyURI"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.common.attributes.mandatory-id">
+        <ref name="relish.lmf.common.attributes.id"/>
+        <optional>
+            <ref name="relish.lmf.common.attributes.lang"/>
+        </optional>
+        <ref name="org.isocat.dcr.attributes"/>
+    </define>
+
+    <define name="relish.lmf.common.attributes">
+        <optional>
+            <ref name="relish.lmf.common.attributes.id"/>
+        </optional>
+        <optional>
+            <ref name="relish.lmf.common.attributes.lang"/>
+        </optional>
+        <ref name="org.isocat.dcr.attributes"/>
+    </define>
+    
+</grammar>

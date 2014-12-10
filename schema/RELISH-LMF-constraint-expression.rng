@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns:lmf="http://www.lexicalmarkupframework.org/" xmlns:dcr="http://www.isocat.org/ns/dcr" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+    
+    <sch:ns uri="http://www.isocat.org/ns/dcif" prefix="lmf"/>
+    
+    <!-- Depends on: the LMF core model -->
+    
+    <!-- Extends: Lexicon -->
+    
+    <define name="relish.lmf.Lexicon.content" combine="interleave">
+        <interleave>
+            <zeroOrMore>
+                <ref name="relish.lmf.ConstraintSet"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Constraint Set -->
+
+    <define name="relish.lmf.ConstraintSet">
+        <element name="lmf:ConstraintSet">
+            <ref name="relish.lmf.ConstraintSet.attributes"/>
+            <ref name="relish.lmf.ConstraintSet.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.ConstraintSet.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+
+    <define name="relish.lmf.ConstraintSet.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.Constraint"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Constraint -->
+    
+    <define name="relish.lmf.Constraint">
+        <element name="lmf:Constraint">
+            <ref name="relish.lmf.Constraint.attributes"/>
+            <ref name="relish.lmf.Constraint.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.Constraint.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.Constraint.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.LogicalOperation"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Logical Operation -->
+    
+    <define name="relish.lmf.LogicalOperation">
+        <element name="lmf:LogicalOperation">
+            <ref name="relish.lmf.LogicalOperation.attributes"/>
+            <ref name="relish.lmf.LogicalOperation.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.LogicalOperation.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="constraints">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.LogicalOperation.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.AttributeValuation"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.Constraint"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Attribute Valuation -->
+    
+    <define name="relish.lmf.AttributeValuation">
+        <element name="lmf:AttributeValuation">
+            <ref name="relish.lmf.AttributeValuation.attributes"/>
+            <ref name="relish.lmf.AttributeValuation.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.AttributeValuation.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.AttributeValuation.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+
+</grammar>

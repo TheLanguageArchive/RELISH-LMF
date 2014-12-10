@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns:lmf="http://www.lexicalmarkupframework.org/" xmlns:dcr="http://www.isocat.org/ns/dcr" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+    
+    <sch:ns uri="http://www.isocat.org/ns/dcif" prefix="lmf"/>
+    
+    <!-- Depends on: the LMF morphology extension -->
+    
+    <!-- Extends: Lexicon -->
+    
+    <define name="relish.lmf.Lexicon.content" combine="interleave">
+        <interleave>
+            <zeroOrMore>
+                <ref name="relish.lmf.MWEPattern"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Extends: Lexical Entry -->
+    
+    <define name="relish.lmf.LexicalEntry.attributes" combine="interleave">
+        <optional>
+            <attribute name="mwePattern">
+                <data type="IDREF"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <!-- Adds: MWE Pattern -->
+
+    <define name="relish.lmf.MWEPattern">
+        <element name="lmf:MWEPattern">
+            <ref name="relish.lmf.MWEPattern.attributes"/>
+            <ref name="relish.lmf.MWEPattern.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.MWEPattern.attributes">
+        <ref name="relish.lmf.common.attributes.mandatory-id"/>
+    </define>
+
+    <define name="relish.lmf.MWEPattern.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.MWENode"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: MWE Node -->
+    
+    <define name="relish.lmf.MWENode">
+        <element name="lmf:MWENode">
+            <ref name="relish.lmf.MWENode.attributes"/>
+            <ref name="relish.lmf.MWENode.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.MWENode.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.MWENode.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.MWEEdge"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.MWELex"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: MWE Edge -->
+    
+    <define name="relish.lmf.MWEEdge">
+        <element name="lmf:MWEEdge">
+            <ref name="relish.lmf.MWEEdge.attributes"/>
+            <ref name="relish.lmf.MWEEdge.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.MWEEdge.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.MWEEdge.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.MWENode"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: MWE Lex -->
+    
+    <define name="relish.lmf.MWELex">
+        <element name="lmf:MWELex">
+            <ref name="relish.lmf.MWELex.attributes"/>
+            <ref name="relish.lmf.MWELex.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.MWELex.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.MWELex.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <!-- TODO: in the UML MWE Lex has an unidirectional association with Component, which isn't expressed in the DTD -->
+        </interleave>
+    </define>
+    
+</grammar>

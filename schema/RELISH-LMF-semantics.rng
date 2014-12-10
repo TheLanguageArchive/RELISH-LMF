@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns:lmf="http://www.lexicalmarkupframework.org/" xmlns:dcr="http://www.isocat.org/ns/dcr" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+    
+    <sch:ns uri="http://www.isocat.org/ns/dcif" prefix="lmf"/>
+    
+    <!-- Depends on: the LMF syntax extension -->
+    
+    <!-- Extends: Lexicon -->
+    
+    <define name="relish.lmf.Lexicon.content" combine="interleave">
+        <interleave>
+            <zeroOrMore>
+                <ref name="relish.lmf.SemanticPredicate"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.Synset"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.SynSemCorrespondence"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Extends: Sense -->
+
+    <define name="relish.lmf.Sense.content" combine="interleave">
+        <interleave>
+            <zeroOrMore>
+                <ref name="relish.lmf.PredicativeRepresentation"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.SenseExample"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.SenseRelation"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.MonolingualExternalRef"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <define name="relish.lmf.Sense.attributes" combine="interleave">
+        <optional>
+            <attribute name="synset">
+                <data type="IDREF"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <!-- Adds: Predicative Representation -->
+    
+    <define name="relish.lmf.PredicativeRepresentation">
+        <element name="lmf:PredicativeRepresentation">
+            <ref name="relish.lmf.PredicativeRepresentation.attributes"/>
+            <ref name="relish.lmf.PredicativeRepresentation.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.PredicativeRepresentation.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="predicate">
+            <data type="IDREF"/>
+        </attribute>
+        <attribute name="correspondences">
+            <data type="IDREFS"/>
+        </attribute>
+    </define>
+    
+    <define name="relish.lmf.PredicativeRepresentation.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+
+    <!-- Adds: Semantic Predicate -->
+    
+    <define name="relish.lmf.SemanticPredicate">
+        <element name="lmf:SemanticPredicate">
+            <ref name="relish.lmf.SemanticPredicate.attributes"/>
+            <ref name="relish.lmf.SemanticPredicate.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SemanticPredicate.attributes">
+        <ref name="relish.lmf.common.attributes.mandatory-id"/>
+        <optional>
+            <attribute name="semanticTypes">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.SemanticPredicate.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.Definition"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.SemanticArgument"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.PredicateRelation"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Semantic Argument -->
+    
+    <define name="relish.lmf.SemanticArgument">
+        <element name="lmf:SemanticArgument">
+            <ref name="relish.lmf.SemanticArgument.attributes"/>
+            <ref name="relish.lmf.SemanticArgument.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SemanticArgument.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="semanticTypes">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.SemanticArgument.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.ArgumentRelation"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Argument Relation -->
+    
+    <define name="relish.lmf.ArgumentRelation">
+        <element name="lmf:ArgumentRelation">
+            <ref name="relish.lmf.ArgumentRelation.attributes"/>
+            <ref name="relish.lmf.ArgumentRelation.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.ArgumentRelation.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="targets">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.ArgumentRelation.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: SynSemCorrespondence -->
+    
+    <define name="relish.lmf.SynSemCorrespondence">
+        <element name="lmf:SynSemCorrespondence">
+            <ref name="relish.lmf.SynSemCorrespondence.attributes"/>
+            <ref name="relish.lmf.SynSemCorrespondence.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SynSemCorrespondence.attributes">
+        <ref name="relish.lmf.common.attributes.mandatory-id"/>
+    </define>
+    
+    <define name="relish.lmf.SynSemCorrespondence.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.SynSemArgMap"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: SynSemArgMap -->
+    
+    <define name="relish.lmf.SynSemArgMap">
+        <element name="lmf:SynSemArgMap">
+            <ref name="relish.lmf.SynSemArgMap.attributes"/>
+            <ref name="relish.lmf.SynSemArgMap.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SynSemArgMap.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="synFeature">
+            <!--<data type="IDREF"/>-->
+        </attribute>
+        <optional>
+            <attribute name="semFeatures">
+                <!--<data type="IDREFS"/>-->
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.SynSemArgMap.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Predicate Relation -->
+    
+    <define name="relish.lmf.PredicateRelation">
+        <element name="lmf:PredicateRelation">
+            <ref name="relish.lmf.PredicateRelation.attributes"/>
+            <ref name="relish.lmf.PredicateRelation.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.PredicateRelation.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="targets">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.PredicateRelation.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Sense Example -->
+    
+    <define name="relish.lmf.SenseExample">
+        <element name="lmf:SenseExample">
+            <ref name="relish.lmf.SenseExample.attributes"/>
+            <ref name="relish.lmf.SenseExample.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SenseExample.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.SenseExample.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Synset -->
+    
+    <define name="relish.lmf.Synset">
+        <element name="lmf:Synset">
+            <ref name="relish.lmf.Synset.attributes"/>
+            <ref name="relish.lmf.Synset.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.Synset.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.Synset.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.Definition"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.SynsetRelation"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.MonolingualExternalRef"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Synset Relation -->
+    
+    <define name="relish.lmf.SynsetRelation">
+        <element name="lmf:SynsetRelation">
+            <ref name="relish.lmf.SynsetRelation.attributes"/>
+            <ref name="relish.lmf.SynsetRelation.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.SynsetRelation.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="targets">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.SynsetRelation.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Monolingual External Ref -->
+
+    <define name="relish.lmf.MonolingualExternalRef">
+        <element name="lmf:MonolingualExternalRef">
+            <ref name="relish.lmf.MonolingualExternalRef.attributes"/>
+            <ref name="relish.lmf.MonolingualExternalRef.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.MonolingualExternalRef.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.MonolingualExternalRef.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Sense Relation -->
+
+    <define name="relish.lmf.SenseRelation">
+        <element name="lmf:SenseRelation">
+            <ref name="relish.lmf.SenseRelation.attributes"/>
+            <ref name="relish.lmf.SenseRelation.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.SenseRelation.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="targets">
+            <data type="IDREFS"/>
+        </attribute>
+    </define>
+
+    <define name="relish.lmf.SenseRelation.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+
+</grammar>

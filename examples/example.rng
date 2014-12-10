@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+    xmlns:lmf="http://www.lexicalmarkupframework.org/" xmlns:dcr="http://www.isocat.org/ns/dcr">
+
+    <!-- 0. always -->
+    <include href="../schema/RELISH-LMF-common.rng"/>
+    <include href="../schema/RELISH-LMF-core.rng"/>
+
+    <!-- 1. choose fs -->
+    <include href="../schema/RELISH-LMF-fs-lmf.rng"/>
+
+    <!-- 2. optionally: select LMF extensions -->
+    <include href="../schema/RELISH-LMF-morphology.rng"/>
+
+    <!-- 3. optionally: add your own extensions -->
+    <!-- Define an User element (using http://example.com as the XML namespace URL) -->
+
+    <define name="myexample.User">
+        <element name="User" ns="http://example.com">
+            <ref name="myexample.User.attributes"/>
+            <ref name="myexample.User.content"/>
+        </element>
+    </define>
+
+    <define name="myexample.User.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+
+    <define name="myexample.User.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+
+    <!-- Link User to Lexical Resource -->
+    <define name="relish.lmf.LexicalResource.content" combine="interleave">
+        <interleave>
+            <zeroOrMore>
+                <ref name="myexample.User"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+</grammar>

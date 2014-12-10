@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="F.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="F.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<LexicalResource xmlns="http://www.lexicalmarkupframework.org/" lmfVersion="ISO 24613:2008">
+    <GlobalInformation>
+        <feat att="languageCoding" val="ISO 639-3"/>
+    </GlobalInformation>
+    <Lexicon>
+        <LexicalEntry>
+            <feat att="partOfSpeech" val="verb"/>
+            <Lemma type="Form">
+                <feat att="writtenForm" val="amare"/>
+            </Lemma>
+            <SyntacticBehaviour subcategorizationFrames="regularSVOAvere"/>
+        </LexicalEntry>
+        <SubcategorizationFrame xml:id="regularSVOAvere">
+            <LexemeProperty>
+                <feat att="auxiliary" val="avere"/>
+                <feat att="position" val="1"/>
+            </LexemeProperty>
+            <SyntacticArgument>
+                <feat att="syntacticFunction" val="subject"/>
+                <feat att="syntacticConstituent" val="NP"/>
+            </SyntacticArgument>
+            <SyntacticArgument>
+                <feat att="syntacticFunction" val="object"/>
+                <feat att="syntacticConstituent" val="NP"/>
+            </SyntacticArgument>
+        </SubcategorizationFrame>
+    </Lexicon>
+</LexicalResource>

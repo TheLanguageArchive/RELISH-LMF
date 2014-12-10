@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns:lmf="http://www.lexicalmarkupframework.org/" xmlns:dcr="http://www.isocat.org/ns/dcr" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+    
+    <sch:ns uri="http://www.isocat.org/ns/dcif" prefix="lmf"/>
+    
+    <!-- Depends on: the LMF morphology extension -->
+    
+    <!-- Extends: Lexicon -->
+    
+    <define name="relish.lmf.Lexicon.content" combine="interleave">
+        <interleave>
+            <zeroOrMore>
+                <ref name="relish.lmf.MorphologicalPattern"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Extends: Lexical Entry -->
+
+    <define name="relish.lmf.LexicalEntry.attributes" combine="interleave">
+        <optional>
+            <attribute name="morphologicalPatterns">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.LexicalEntry.content" combine="interleave">
+        <interleave>
+            <zeroOrMore>
+                <ref name="relish.lmf.TransformCategory"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- TODO: extend Lemma and Stem as Affix Allomorph is a subclass of Form Representation -->
+
+    <!-- Adds: Morphological Pattern -->
+
+    <define name="relish.lmf.MorphologicalPattern">
+        <element name="lmf:MorphologicalPattern">
+            <ref name="relish.lmf.MorphologicalPattern.attributes"/>
+            <ref name="relish.lmf.MorphologicalPattern.content"/>
+        </element>
+    </define>
+
+    <define name="relish.lmf.MorphologicalPattern.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+
+    <define name="relish.lmf.MorphologicalPattern.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.TransformSet"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.TransformCategory"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.Affix"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.AffixSlot"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.AffixTemplate"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <!-- Adds: Transform Set -->
+    
+    <define name="relish.lmf.TransformSet">
+        <element name="lmf:TransformSet">
+            <ref name="relish.lmf.TransformSet.attributes"/>
+            <ref name="relish.lmf.TransformSet.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.TransformSet.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.TransformSet.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.Process"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.GrammaticalFeatures"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.TransformCategory"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <!-- Adds: Grammatical Features -->
+    
+    <define name="relish.lmf.GrammaticalFeatures">
+        <element name="lmf:GrammaticalFeatures">
+            <ref name="relish.lmf.GrammaticalFeatures.attributes"/>
+            <ref name="relish.lmf.GrammaticalFeatures.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.GrammaticalFeatures.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.GrammaticalFeatures.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+
+    <!-- Adds: Process -->
+    
+    <define name="relish.lmf.Process">
+        <element name="lmf:Process">
+            <ref name="relish.lmf.Process.attributes"/>
+            <ref name="relish.lmf.Process.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.Process.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.Process.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.Condition"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <!-- Adds: Condition -->
+    
+    <define name="relish.lmf.Condition">
+        <element name="lmf:Condition">
+            <ref name="relish.lmf.Condition.attributes"/>
+            <ref name="relish.lmf.Condition.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.Condition.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.Condition.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.GrammaticalFeatures"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.TransformCategory"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Affix -->
+    
+    <define name="relish.lmf.Affix">
+        <element name="lmf:Affix">
+            <ref name="relish.lmf.Affix.attributes"/>
+            <ref name="relish.lmf.Affix.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.Affix.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.Affix.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.AffixAllomorph"/>
+            </zeroOrMore>
+            <zeroOrMore>
+                <ref name="relish.lmf.GrammaticalFeatures"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Affix Allomorph -->
+    
+    <define name="relish.lmf.AffixAllomorph">
+        <element name="lmf:AffixAllomorph">
+            <ref name="relish.lmf.AffixAllomorph.attributes"/>
+            <ref name="relish.lmf.AffixAllomorph.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.AffixAllomorph.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <attribute name="type">
+            <value>FormRepresentation</value>
+        </attribute>
+    </define>
+    
+    <define name="relish.lmf.AffixAllomorph.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.Condition"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <!-- Adds: Affix Template -->
+    
+    <define name="relish.lmf.AffixTemplate">
+        <element name="lmf:AffixTemplate">
+            <ref name="relish.lmf.AffixTemplate.attributes"/>
+            <ref name="relish.lmf.AffixTemplate.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.AffixTemplate.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.AffixTemplate.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.TemplateSlot"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <!-- Adds: Template Slot -->
+    
+    <define name="relish.lmf.TemplateSlot">
+        <element name="lmf:TemplateSlot">
+            <ref name="relish.lmf.TemplateSlot.attributes"/>
+            <ref name="relish.lmf.TemplateSlot.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.TemplateSlot.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="affixslots">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.TemplateSlot.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+            <zeroOrMore>
+                <ref name="relish.lmf.Affix"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Affix Slot -->
+    
+    <define name="relish.lmf.AffixSlot">
+        <element name="lmf:AffixSlot">
+            <ref name="relish.lmf.AffixSlot.attributes"/>
+            <ref name="relish.lmf.AffixSlot.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.AffixSlot.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+        <optional>
+            <attribute name="affixs">
+                <data type="IDREFS"/>
+            </attribute>
+        </optional>
+    </define>
+    
+    <define name="relish.lmf.AffixSlot.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+    <!-- Adds: Transform Category -->
+    
+    <define name="relish.lmf.TransformCategory">
+        <element name="lmf:TransformCategory">
+            <ref name="relish.lmf.TransformCategory.attributes"/>
+            <ref name="relish.lmf.TransformCategory.content"/>
+        </element>
+    </define>
+    
+    <define name="relish.lmf.TransformCategory.attributes">
+        <ref name="relish.lmf.common.attributes"/>
+    </define>
+    
+    <define name="relish.lmf.TransformCategory.content">
+        <interleave>
+            <ref name="relish.lmf.fs"/>
+        </interleave>
+    </define>
+    
+</grammar>

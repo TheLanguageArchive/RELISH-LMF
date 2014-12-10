@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="H.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="H.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<LexicalResource xmlns="http://www.lexicalmarkupframework.org/" lmfVersion="ISO 24613:2008">
+    <GlobalInformation>
+        <feat att="languageCoding" val="ISO 639-3"/>
+    </GlobalInformation>
+    <Lexicon>
+        <LexicalEntry>
+            <feat att="partOfSpeech" val="verb"/>
+            <Lemma type="Form">
+                <feat att="writtenForm" val="aider"/>
+            </Lemma>
+            <Sense xml:id="aider1">
+                <PredicativeRepresentation predicate="P1" correspondences="SVO_XY SVI_XZ"> </PredicativeRepresentation>
+            </Sense>
+            <SyntacticBehaviour subcategorizationFrames="regularSVO"/>
+            <SyntacticBehaviour subcategorizationFrames="regularSVI"/>
+        </LexicalEntry>
+        <SynSemCorrespondence xml:id="SVO_XY">
+            <SynSemArgMap synFeature="regularSVO-subject" semFeatures="P1-X"/>
+            <SynSemArgMap synFeature="regularSVO-object" semFeatures="P1-Y"/>
+        </SynSemCorrespondence>
+        <SynSemCorrespondence xml:id="SVI_XZ">
+            <SynSemArgMap synFeature="regularSVI-subject" semFeatures="P1-X"/>
+            <SynSemArgMap synFeature="regularSVI-infinitiveModifier" semFeatures="P1-Z"/>
+        </SynSemCorrespondence>
+        <SubcategorizationFrame xml:id="regularSVO">
+            <SyntacticArgument xml:id="regularSVO-subject">
+                <feat att="syntacticFunction" val="subject"/>
+                <feat att="syntacticConstituent" val="NP"/>
+            </SyntacticArgument>
+            <SyntacticArgument xml:id="regularSVO-object">
+                <feat att="syntacticFunction" val="object"/>
+                <feat att="syntacticConstituent" val="NP"/>
+            </SyntacticArgument>
+        </SubcategorizationFrame>
+        <SubcategorizationFrame xml:id="regularSVI">
+            <SyntacticArgument xml:id="regularSVI-subject">
+                <feat att="syntacticFunction" val="subject"/>
+                <feat att="syntacticConstituent" val="NP"/>
+            </SyntacticArgument>
+            <SyntacticArgument xml:id="regularSVI-infinitiveModifier">
+                <feat att="syntacticFunction" val="infinitiveModifier"/>
+                <feat att="syntacticConstituent" val="IP"/>
+                <feat att="introducer" val="à"/>
+            </SyntacticArgument>
+        </SubcategorizationFrame>
+        <SemanticPredicate xml:id="P1">
+            <feat att="label" val="X aider1 Y à Z par W"/>
+            <SemanticArgument xml:id="P1-X">
+                <feat att="label" val="X"/>
+            </SemanticArgument>
+            <SemanticArgument xml:id="P1-Y">
+                <feat att="label" val="Y"/>
+            </SemanticArgument>
+            <SemanticArgument xml:id="P1-Z">
+                <feat att="label" val="Z"/>
+            </SemanticArgument>
+            <SemanticArgument xml:id="P1-W">
+                <feat att="label" val="W"/>
+            </SemanticArgument>
+        </SemanticPredicate>
+    </Lexicon>
+</LexicalResource>

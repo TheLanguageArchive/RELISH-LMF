@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="H.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="H.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<LexicalResource xmlns="http://www.lexicalmarkupframework.org/" lmfVersion="ISO 24613:2008">
+    <GlobalInformation>
+        <feat att="languageCoding" val="ISO 639-3"/>
+    </GlobalInformation>
+    <Lexicon>
+        <LexicalEntry>
+            <feat att="partOfSpeech" val="adjective"/>
+            <Lemma type="Form">
+                <feat att="writtenForm" val="visible"/>
+            </Lemma>
+            <Sense xml:id="visible1">
+                <SenseRelation targets="invisible1">
+                    <feat att="label" val="antonym"/>
+                </SenseRelation>
+            </Sense>
+        </LexicalEntry>
+        <LexicalEntry>
+            <feat att="partOfSpeech" val="adjective"/>
+            <Lemma type="Form">
+                <feat att="writtenForm" val="invisible"/>
+            </Lemma>
+            <Sense xml:id="invisible1"/>
+        </LexicalEntry>
+    </Lexicon>
+</LexicalResource>

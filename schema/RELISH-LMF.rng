@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar 
+    xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+    xmlns:lmf="http://www.lexicalmarkupframework.org/"
+    xmlns:dcr="http://www.isocat.org/ns/dcr">
+    
+    <!-- always -->
+    <include href="RELISH-LMF-common.rng"/>
+    <include href="RELISH-LMF-core.rng"/>
+    
+    <!-- choose fs -->
+    <include href="RELISH-LMF-fs-lmf.rng"/>
+    <!--<include href="RELISH-LMF-fs-tei.rng"/>-->
+    
+    <!-- LMF extensions -->
+    <include href="RELISH-LMF-morphology.rng"/>
+    <include href="RELISH-LMF-MRD.rng"/>
+    <include href="RELISH-LMF-syntax.rng"/>
+    <include href="RELISH-LMF-semantics.rng"/>
+    <include href="RELISH-LMF-multilingual-notations.rng"/>
+    <include href="RELISH-LMF-morphological-patterns.rng"/>
+    <include href="RELISH-LMF-MWE.rng"/>
+    <include href="RELISH-LMF-constraint-expression.rng"/>
+    
+</grammar>

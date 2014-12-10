@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="J.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="J.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<LexicalResource xmlns="http://www.lexicalmarkupframework.org/" lmfVersion="ISO 24613:2008">
+    <GlobalInformation>
+        <feat att="languageCoding" val="ISO 639-3"/>
+    </GlobalInformation>
+    <Lexicon>
+        <LexicalEntry>
+            <Lemma type="Form"/>
+            <SyntacticBehaviour xml:id="eng.develop1"/>
+        </LexicalEntry>
+    </Lexicon>
+    <Lexicon>
+        <LexicalEntry>
+            <Lemma type="Form"/>
+            <SyntacticBehaviour xml:id="esp.desarrollar1"/>
+        </LexicalEntry>
+        <LexicalEntry>
+            <Lemma type="Form"/>
+            <SyntacticBehaviour xml:id="esp.construir1"/>
+        </LexicalEntry>
+    </Lexicon>
+    <Lexicon>
+        <LexicalEntry>
+            <Lemma type="Form"/>
+            <SyntacticBehaviour xml:id="ita.costruir1"/>
+        </LexicalEntry>
+    </Lexicon>
+    <TransferAxis xml:id="TA1" syntacticBehaviours="eng.develop1 esp.desarrollar1">
+        <TransferAxisRelation targets="TA2"/>
+    </TransferAxis>
+    <TransferAxis xml:id="TA2" syntacticBehaviours="esp.construir1 ita.costruir1">
+        <SourceTest syntacticBehaviours="eng.develop1">
+            <feat att="semanticRestriction" val="eng.building"/>
+            <feat att="syntacticArgument" val="2"/>
+        </SourceTest>
+    </TransferAxis>
+</LexicalResource>

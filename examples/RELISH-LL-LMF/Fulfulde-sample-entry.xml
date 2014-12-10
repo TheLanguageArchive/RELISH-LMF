@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../schema/RELISH-LL-LMF/RELISH-LL-LMF.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../../schema/RELISH-LL-LMF/RELISH-LL-LMF.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<lmf:LexicalResource xmlns:lmf="http://www.lexicalmarkupframework.org/" xmlns:dcr="http://www.isocat.org/ns/dcr" xmlns:tei="http://www.tei-c.org/ns/1.0" lmfVersion="ISO 24613:2008">
+    <lmf:GlobalInformation>
+        <tei:f name="languageCoding" dcr:datcat="http://www.isocat.org/datcat/DC-2482">
+            <tei:string>ISO639-3</tei:string>
+        </tei:f>
+    </lmf:GlobalInformation>
+    <lmf:Lexicon>
+        <lmf:LexicalEntry xml:id="_1">
+            <tei:f name="originalID">
+                <tei:string>_3</tei:string>
+            </tei:f>
+            <lmf:Lemma type="Form">
+                <lmf:FormRepresentation type="Representation">
+                    <tei:f name="text">
+                        <tei:string xml:lang="fuh-Latn">aadaade</tei:string>
+                    </tei:f>
+                </lmf:FormRepresentation>
+            </lmf:Lemma>
+            <lmf:Sense>
+                <tei:f name="partOfSpeech">
+                    <tei:string>Verb</tei:string>
+                </tei:f>
+                <tei:f name="grammaticalInfo">
+                    <tei:string>Infinitive</tei:string>
+                </tei:f>
+                <tei:f name="dialects">
+                    <tei:vColl>
+                        <tei:string>Jelgoore</tei:string>
+                        <tei:string>Yaagaare</tei:string>
+                        <tei:string>Gurmaare</tei:string>
+                        <tei:string>Mooslire</tei:string>
+                    </tei:vColl>
+                </tei:f>
+                <tei:f name="semanticCategory">
+                    <tei:string>Theological Terms</tei:string>
+                </tei:f>
+                <lmf:Definition>
+                    <lmf:TextRepresentation type="Representation">
+                        <tei:f name="text">
+                            <tei:string xml:lang="en-Latn">to promise, to convenant, to agree, to enter a contract</tei:string>
+                        </tei:f>
+                    </lmf:TextRepresentation>
+                </lmf:Definition>
+                <lmf:Context>
+                    <lmf:TextRepresentation type="Representation">
+                        <tei:f name="text">
+                            <tei:string xml:lang="fuh-Latn">Laamdo aaɗeke adunaaru fuu heɓan barke saabe lenyoi Ibrahiima.</tei:string>
+                        </tei:f>
+                    </lmf:TextRepresentation>
+                    <lmf:TextRepresentation type="Representation">
+                        <tei:f name="text">
+                            <tei:string xml:lang="en-Latn">God promised that the whole world would be blessed because of Abraham's lineage.</tei:string>
+                        </tei:f>
+                    </lmf:TextRepresentation>
+                </lmf:Context>
+                <lmf:SenseRelation targets="_74 _1757">
+                    <tei:f name="type">
+                        <tei:string>cf</tei:string>
+                    </tei:f>
+                </lmf:SenseRelation>
+                <lmf:SenseRelation targets="_1755">
+                    <tei:f name="type">
+                        <tei:string>synonym</tei:string>
+                    </tei:f>
+                </lmf:SenseRelation>
+            </lmf:Sense>
+            <!-- NOTE: Sense stubs to satisfy referential integrity -->
+            <lmf:Sense xml:id="_74"/>
+            <lmf:Sense xml:id="_1757"/>
+            <lmf:Sense xml:id="_1755"/>
+        </lmf:LexicalEntry>
+    </lmf:Lexicon>
+</lmf:LexicalResource>

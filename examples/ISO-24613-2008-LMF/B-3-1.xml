@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="B.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="B.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<LexicalResource xmlns="http://www.lexicalmarkupframework.org/" lmfVersion="ISO 24613:2008">
+    <GlobalInformation>
+        <feat att="languageCoding" val="ISO 639-3"/>
+    </GlobalInformation>
+    <Lexicon>
+        <feat att="language" val="eng"/>
+        <LexicalEntry>
+            <feat att="partOfSpeech" val="commonNoun"/>
+            <Lemma type="Form">
+                <feat att="writtenForm" val="clergyman"/>
+            </Lemma>
+            <WordForm type="Form">
+                <feat att="writtenForm" val="clergyman"/>
+                <feat att="grammaticalNumber" val="singular"/>
+            </WordForm>
+            <WordForm type="Form">
+                <feat att="writtenForm" val="clergymen"/>
+                <feat att="grammaticalNumber" val="plural"/>
+            </WordForm>
+        </LexicalEntry>
+    </Lexicon>
+</LexicalResource>
