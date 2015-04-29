@@ -65,7 +65,7 @@ Two Relax NG modules are always needed:
 
 Two feature structure serializations are provided:
 
-1. [`\<feat .../\>` elements](https://github.com/TheLanguageArchive/RELISH-LMF/blob/master/schema/RELISH-LMF-fs-lmf.rng) as used in the ISO LMF standard but extended
+1. [`<feat .../>` elements](https://github.com/TheLanguageArchive/RELISH-LMF/blob/master/schema/RELISH-LMF-fs-lmf.rng) as used in the ISO LMF standard but extended
 with Data Category Reference attributes
 2. [TEI/ISO feature structures and feature system declarations](https://github.com/TheLanguageArchive/RELISH-LMF/blob/master/schema/RELISH-LMF-fs-tei.rng) (also
 needs [these files](https://github.com/TheLanguageArchive/RELISH-LMF/tree/master/schema/tei) in a tei subdirectory)
@@ -100,7 +100,7 @@ top of the Relax NG modules or Figure 2 in the LMF standard.
 
 Due to the use feature structures LMF is already easily extensible.
 However, sometimes extensions of the object model are needed. Your own
-extensions can be declared in Relax NG (there is a good online book by
+extensions can be declared in Relax NG (there is a good [online book](http://books.xmlschemata.org/relaxng/) by
 Eric van der Vlist) and added to the lexicon schema. To make your
 extensions explicit new elements or attributes should use your or their
 own [XML namespace](http://en.wikipedia.org/wiki/XML_namespace) URL. RELISH LMF uses
@@ -157,7 +157,7 @@ class. This allows Schematron rules to make the schema less lax, e.g.,
 the core model requires that an valid lexical entry should always
 contain an instance of a Form subclass like Lemma. So if your extension
 includes a subclass the (highest) super class should be specified in
-@type. See the `relish.lmf.Lemma.attributes definition` in the [Morphology
+`@type`. See the `relish.lmf.Lemma.attributes definition` in the [Morphology
 extension](https://github.com/TheLanguageArchive/RELISH-LMF/blob/master/schema/RELISH-LMF-morphology.rng) for an example.
 
 Now that the lexicon schema is ready it can be used to validate XML
@@ -229,7 +229,7 @@ dcr:datcat="http://www.isocat.org/datcat/DC-1836"
 This instance exposes some of the changes compared to the LMF DTD RELISH
 LMF introduces:
 
-- there is a version attribute @lmfVersion which refers to the current
+- there is a version attribute `@lmfVersion` which refers to the current
   ISO LMF standard
 - IDs are specified using the W3C [`@xml:id`](http://www.w3.org/TR/xml-id/) recommendation which allows
   XML tools to exploit them even without loading the schema
@@ -238,15 +238,15 @@ LMF introduces:
 - features can identify the ISOcat data categories they use using
   `@dcr:datcat` for features and `@dcr:valueDatcat` for feature values (where
   applicable); this is also [supported](http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-att.datcat.html) by TEI feature structures
-- the `@type` which indicates that Lemma is a subclass of Form
+- the `@type` which indicates that *Lemma* is a subclass of *Form*
 
 Notice that the annotating the individual feature instantiations with
 data categories quickly becomes highly redundant. In general it's
 advised to annotate a resource schema. However, in (RELISH) LMF the
 schema (DTD or Relax NG) can only specify feature structures in a
 generic way. Fortunately, the TEI feature structure representation also
-supports feature system declarations. RELISH LMF supports a tei:fsdDecl
-element under LexicalResource. The examples include an instance document
+supports feature system declarations. RELISH LMF supports a `tei:fsdDecl`
+element under `LexicalResource`. The examples include an instance document
 showing this.
 
 Note: At the time of writing TEI P5 2.1.0 doesn't support `@dcr:datcat` on
@@ -306,8 +306,7 @@ fixes) and used as test cases.
 
 RELISH LMF supports the [ISOcat Data Category Reference vocabulary](http://www.isocat.org/12620/schemas/DCR.html). This
 allows to associate a feature with its proper data categories, e.g.,
-`\<feat att="languageCoding"
-dcr:datcat="http://www.isocat.org/datcat/DC-2008" val="ISO 639-3"/\>`
+`<feat att="languageCoding" dcr:datcat="http://www.isocat.org/datcat/DC-2008" val="ISO 639-3"/>`
 
 *Schematron*
 
@@ -344,7 +343,7 @@ used in RELISH LMF:
 
 RELISH LMF additionally uses the following patterns:
 - In a specialized class the name of the parent (abstract) class is
-  specified in the type attribute, e.g., `\<Lemma type="Form"/\>`.
+  specified in the type attribute, e.g., `<Lemma type="Form"/>`.
 - Cardinality constraints with an abstract class are checked using the
   type attribute and a Schematron rule, e.g., a `LexicalEntry` should at
   least contain one instance of a subclass of *Form*.
@@ -386,7 +385,7 @@ to determine the direction:
   - The association between *Context Axis* and *Context* is expressed by
     the IDREFS-typed `examples` attribute on `ContextAxis`.
 - NLP multiword experession patterns extension (MWE):
-  - The association between *MWE Pattern* and *Lexical Entry) is
+  - The association between *MWE Pattern* and *Lexical Entry* is
     expressed by the IDREF-typed `mwePattern` attribute on `LexicalEntry`.
 
 Outliers, i.e., here the serialization is diverging from the patterns:
@@ -424,7 +423,7 @@ appreciated:
   implemented as an aggregation, i.e., zero or more `FormRepresentation`
   instances can be nested in an `AffixAllomorph` instance. How to interpret
   and implement this inheritance relationship? For now RELISH LMF follows
-  the UML class model, i.e., `\<AffixAllomporh type="FormRepresentation"/\>`,
+  the UML class model, i.e., `<AffixAllomporh type="FormRepresentation"/>`,
   but `AffixAllomorph` is not yet allowed everywhere where
   `FormRepresentation` is allowed.
 
