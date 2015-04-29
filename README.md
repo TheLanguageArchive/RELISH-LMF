@@ -25,7 +25,7 @@ modern XML schema languages: [Relax NG](http://relaxng.org/) ([ISO/IEC 19757-2:2
 vocabularies are supported, e.g., `@xml:id` and `@xml:lang`.
 
 This README describes the [usage](#usage) of the RELISH LMF schema, but also some of
-the [design](#design) decisions.
+the [design](#design) decisions. There are also some [publications](#pubs).
 
 <a name="usage"></a>Usage
 -----
@@ -429,3 +429,9 @@ appreciated:
 
 Additional differences with the DTD:
 - `MWENode` allows to nest zero or more `MWELex` instances.
+
+<a name="pubs"></a>Publications
+------------
+- Windhouwer, M., Petro, J., Shayan, S. [RELISH LMF: Unlocking the Full Power of the Lexical Markup Framework](http://www.lrec-conf.org/proceedings/lrec2014/summaries/154.html). In *Proceedings of the Ninth International Conference on Language Resources and Evaluation* ([LREC 2014](http://lrec2014.lrec-conf.org/en/)), European Language Resources Association ([ELRA](http://www.elra.info/)), Reykjavik, Iceland, May 28-30, 2014. 
+- Windhouwer, M. RELISH LMF: unlocking the full power of the Lexical Markup Framework. At the *24th Meeting of Computational Linguistics in the Netherlands* ([CLIN 24](http://clin24.inl.nl/)), Leiden, The Netherlands, January 17, 2014. ([poster](http://www.windhouwer.nl/menzo/professional/papers/CLIN-2014-RELISH-LMF.pdf))
+- Windhouwer, M., Petro, J., Nevskaya, I., Drude, S., Aristar-Dry, H. Gippert, J. Creating a Serialization of LMF: The experience of the RELISH project. In [*LMF: Lexical Markup Framework, Theory and Practice*](http://www.iste.co.uk/index.php?f=a&ACTION=View&id=566), Gil Francopoulo (ed). Iste (Europe)/Wiley (US). 2013.
