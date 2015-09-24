@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0"
-         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"><!--Schema generated 2014-01-20T21:01:54Z
-Edition: Version 2.6.0. Last updated on
-	20th January 2014, revision 12802
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"><!--Schema generated 2015-04-06T12:48:08Z
+Edition: Version 2.8.0. Last updated on
+	6th April 2015, revision 13197
 This material is dual-licensed.
-[http://creativecommons.org/licenses/by/3.0/] Distributed under a Creative Commons Attribution 3.0 Unported License.  [http://www.opensource.org/licenses/BSD-2-Clause] Copyright 2014 TEI Consortium. All rights reserved. Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. This software is provided by the copyright holders and contributors "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the copyright holder or contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage. TEI material can be licensed differently depending on the use you intend to make of it. Hence it is made available under both the CC+BY and BSD-2 licences. The CC+BY licence is generally appropriate for usages which treat TEI content as data or documentation. The BSD-2 licence is generally appropriate for usage of TEI content in a software environment. For further information or clarification, please contact the TEI Consortium. Feature structures--><!--Definitions from module iso-fs--><!--Set global predeclared macros--><!--Set predeclared macros--><!--0. predeclared macros--><!--1. classes--><!--2. elements--><define name="bicond">
+[http://creativecommons.org/licenses/by/3.0/] Distributed under a Creative Commons Attribution 3.0 Unported License.  [http://www.opensource.org/licenses/BSD-2-Clause] Copyright 2015 TEI Consortium. All rights reserved. Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. This software is provided by the copyright holders and contributors "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the copyright holder or contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage. TEI material can be licensed differently depending on the use you intend to make of it. Hence it is made available under both the CC+BY and BSD-2 licences. The CC+BY licence is generally appropriate for usages which treat TEI content as data or documentation. The BSD-2 licence is generally appropriate for usage of TEI content in a software environment. For further information or clarification, please contact the TEI Consortium. Feature structures--><!--Definitions from module iso-fs--><!--Set global predeclared macros--><!--Set predeclared macros--><!--0. predeclared macros--><!--1. classes--><!--2. elements-->
+   <define name="bicond">
       <element name="bicond">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(bi-conditional feature-structure constraint) defines a biconditional feature-structure constraint; both consequent and antecedent are specified as feature structures or groups of feature structures; the constraint is satisfied if both subsume a given feature structure, or if both do not. []</a:documentation>
          <ref name="bicond.content"/>
@@ -101,14 +102,14 @@ This material is dual-licensed.
          </choice>
       </zeroOrMore>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-               id="f-constraint-fValConstraints1">
+               id="f-fValConstraints-constraint-8">
          <rule xmlns:rng="http://relaxng.org/ns/structure/1.0" context="tei:fVal">
             <assert test="not(tei:* and text)"> A feature value cannot
     contain both text and element content</assert>
          </rule>
-      </pattern> 
+      </pattern>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-               id="f-constraint-fValConstraints2">
+               id="f-fValConstraints-constraint-9">
          <rule xmlns:rng="http://relaxng.org/ns/structure/1.0" context="tei:fVal">
             <report test="count(tei:*)&gt;1"> A feature value can contain
     only one child element</report>
@@ -626,4 +627,5 @@ This material is dual-licensed.
       <ref name="att.global.attributes"/>
       <empty/>
    </define>
-   <!--3. macros--></grammar>
+   <!--3. macros-->
+</grammar>

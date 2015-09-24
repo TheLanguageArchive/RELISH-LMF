@@ -1,8 +1,7 @@
 RELISH-LMF
 ==========
 
-In 2008 ISO published the [Lexical Markup Framework](http://www.lexicalmarkupframework.org/) (LMF; [ISO 24613:2008](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=37327))
-which provides an object model (specified in [UML](http://en.wikipedia.org/wiki/Unified_Modeling_Language)) for lexica. The object
+In 2008 ISO published the [Lexical Markup Framework](http://www.lexicalmarkupframework.org/) (LMF; [ISO 24613:2008](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=37327)), which provides an object model (specified in [UML](http://en.wikipedia.org/wiki/Unified_Modeling_Language)) for lexica. The object
 model is a series of extensions of a LMF core model. When a user wants
 to design a LMF compliant lexicon she needs to select not only the
 needed extensions, i.e., objects and their associations, but also data

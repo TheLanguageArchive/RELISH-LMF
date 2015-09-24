@@ -10,9 +10,12 @@
 
     <!-- allow the declaration of reusable feature structures (components) -->
     <define name="relish.lmf.LexicalResource.content" combine="interleave">
-        <optional>
-            <ref name="fsdDecl"/>
-        </optional>
+        <zeroOrMore>
+            <choice>
+                <ref name="fsdDecl"/>
+                <ref name="fsdLink"/>
+            </choice>
+        </zeroOrMore>
     </define>
     
     <!-- FSDs don't allow @dcr:* yet, so add them -->
