@@ -6,13 +6,13 @@ model is a series of extensions of a LMF core model. When a user wants
 to design a LMF compliant lexicon she needs to select not only the
 needed extensions, i.e., objects and their associations, but also data
 categories from the [ISOcat](http://www.isocat.org/) Data Category Registry (DCR) to adorn these
-objects with, in general linguistic, features. In the informative Annex
+objects with, in general, linguistic features. In the informative Annex
 R a [DTD](http://en.wikipedia.org/wiki/Document_Type_Declaration) is given to serialize the full LMF object model to XML. However,
 this DTD has various shortcomings:
 
 - the links from features to the ISOcat DCR are underspecified
-  alternative feature structure representations, e.g., [TEI](http://www.tei-c.org/release/doc/tei-p5-doc/en/html/FS.html)/[ISO feature structures](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=37324) and [feature system declarations](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=43823), are not supported
-- there is no way to select the LMF extensions needed by the lexicon
+- alternative feature structure representations, e.g., [TEI](http://www.tei-c.org/release/doc/tei-p5-doc/en/html/FS.html)/[ISO feature structures](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=37324) and [feature system declarations](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=43823), are not supported
+- there is no way to select the LMF extensions needed by the lexicon,
   by default the schema contains all of them
   there is no way to add lexicon-specific extensions
 - not all UML constructions and constraints can be supported by a DTD
@@ -53,9 +53,8 @@ be filled out:
 </grammar>
 ```
 
-Download the files you need using the links provided below and replace
-in the template the path-to-relish-lmf by the path to these files. There
-is also an archive containing all the files.
+checkout the repository or download the files you need using the links provided below and replace
+in the template the path-to-relish-lmf by the path to these files. GitHub also an archive containing all the files.
 
 Two Relax NG modules are always needed:
 
@@ -97,7 +96,7 @@ Pick the modules you need and add them to the schema:
 Notice that some extensions depend on each other. See comments in the
 top of the Relax NG modules or Figure 2 in the LMF standard.
 
-Due to the use feature structures LMF is already easily extensible.
+Due to the use of feature structures LMF is already easily extensible.
 However, sometimes extensions of the object model are needed. Your own
 extensions can be declared in Relax NG (there is a good [online book](http://books.xmlschemata.org/relaxng/) by
 Eric van der Vlist) and added to the lexicon schema. To make your
@@ -176,7 +175,7 @@ type="application/xml"
 Notice that the same schema is associated twice. The first association
 triggers the Relax NG validation and the second one Schematron
 validation. For example, [oXygen](http://www.oxygenxml.com/) understands this processing instruction
-will perform both Relax NG and Schematron validation.
+and will perform both Relax NG and Schematron validation.
 
 ```xml
 <LexicalResource
@@ -232,7 +231,7 @@ LMF introduces:
   ISO LMF standard
 - IDs are specified using the W3C [`@xml:id`](http://www.w3.org/TR/xml-id/) recommendation which allows
   XML tools to exploit them even without loading the schema
-- also [`@xml:lang`](http://www.w3.org/TR/REC-xml/#sec-lang-tag) is allowed which can, for example, be exploited by
+- also [`@xml:lang`](http://www.w3.org/TR/REC-xml/#sec-lang-tag) is allowed, which can, for example, be exploited by
   XML search engines to enable language specific stemming and stopping
 - features can identify the ISOcat data categories they use using
   `@dcr:datcat` for features and `@dcr:valueDatcat` for feature values (where
@@ -252,6 +251,11 @@ Note: At the time of writing TEI P5 2.1.0 doesn't support `@dcr:datcat` on
 `tei:fDecl`, which is clearly intended in the text. For now RELISH LMF has
 added this via its TEI feature structure representation module. This
 omission has been reported (see [bug report](https://sourceforge.net/tracker/?func=detail&aid=3569990&group_id=106328&atid=644062)).
+
+Note: At the time of writing there is no validator for TEI feature structures
+based on a declaration. In the past Gary Simons developed a [validator](http://link.springer.com/article/10.1007/BF01830616), but
+it was based on an older TEI version and wasn't maintained. Development of a [new validator](https://github.com/HelenaSabel/FS-Validator) has just been
+started by Helena Sabel.
 
 Examples
 --------
@@ -320,7 +324,7 @@ of Form
 
 *From UML to XML*
 
-To be able to serialize to XML the UML construction used in LMF model
+To be able to serialize to XML the UML construction used in a LMF model
 need to be expressed somehow in XML. The standard is not explicit (and
 consistent) in this mapping. The following patterns were recognized and
 used in RELISH LMF:
@@ -351,7 +355,7 @@ RELISH LMF additionally uses the following patterns:
   `Component` instances.
 
 Using these patterns RELISH LMF mimics the LMF UML class model in XML
-and tried to stay close to the original DTD. At some places the UML
+and tries to stay close to the original DTD. At some places the UML
 class model contains undirected associations and then the DTD was used
 to determine the direction:
 - NLP semantics extension:
@@ -398,7 +402,7 @@ Outliers, i.e., here the serialization is diverging from the patterns:
   conform the examples in H.1.2.3 and the [ItalianLMFTestSuites instance](https://github.com/TheLanguageArchive/RELISH-LMF/blob/master/examples/LIRICS/ItalianLMFTestSuites.xml)
   from LIRICs. (Note: the DTD doesn't contain these attributes and the
   example in H.1.2.3 puts the information inside the feature structure.
-  RELISH LMF aims to be consistent and follow the pattern as much as
+  RELISH LMF aims to be consistent and follow the patterns described above as much as
   possible.)
 - The directed association between *MWE Lex* and *Component* isn't
   expressed at all. The standard says "the components are not referenced
